@@ -8,7 +8,7 @@ async function checkLLMConnection() {
   try {
     const chatCompletion = await groq.chat.completions.create({
       messages: [{ role: 'user', content: 'Hello' }],
-      model: 'llama3-8b-8192',
+      model: 'llama-3.3-70b-versatile',
       max_tokens: 10
     });
     return true;
@@ -54,7 +54,7 @@ Respond in the following JSON format:
 
     const chatCompletion = await groq.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
-      model: 'llama3-8b-8192',
+      model: 'llama-3.3-70b-versatile',
       temperature: 0.3,
       max_tokens: 1024
     });

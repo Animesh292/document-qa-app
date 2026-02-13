@@ -168,7 +168,7 @@ function StatusPage() {
                     LLM Connection
                   </div>
                   <div style={{ fontSize: '0.9rem', color: '#666' }}>
-                    Groq API (Llama 3)
+                    Groq API (Llama 3.3)
                   </div>
                 </div>
                 <div style={{
