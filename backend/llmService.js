@@ -5,7 +5,7 @@ const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
 
 async function checkLLMConnection() {
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
     const result = await model.generateContent('Hello');
     return true;
   } catch (error) {
@@ -22,7 +22,7 @@ async function checkLLMConnection() {
  */
 
 async function askQuestion(question, documentContents) {
-  try { 
+  try {
     let context = '';
     documentContents.forEach((doc, index) => {
       context += `\n\n--- Document ${index + 1}: ${doc.filename} ---\n${doc.content}`;
@@ -48,10 +48,10 @@ Respond in the following JSON format:
   "relevantText": "exact quote from the document that supports your answer"
 }`;
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
     const result = await model.generateContent(prompt);
     const responseText = result.response.text().trim();
-    
+
     // Try to parse JSON response
     let parsedResponse;
     try {
