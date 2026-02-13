@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 function StatusPage() {
@@ -9,14 +9,7 @@ function StatusPage() {
 
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
-  useEffect(() => {
-    checkStatus();
-    // Refresh status every 30 seconds
-    const interval = setInterval(checkStatus, 30000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const checkStatus = async () => {
+  const checkStatus = useCallback(async () => {
     setLoading(true);
     setError('');
 
@@ -31,7 +24,14 @@ function StatusPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [API_URL]);
+
+  useEffect(() => {
+    checkStatus();
+    // Refresh status every 30 seconds
+    const interval = setInterval(checkStatus, 30000);
+    return () => clearInterval(interval);
+  }, [checkStatus]);
 
   const getStatusIcon = (status) => {
     switch (status) {
@@ -87,8 +87,8 @@ function StatusPage() {
 
       {loading && !status ? (
         <div className="card" style={{ textAlign: 'center', padding: '3rem' }}>
-          <div className="loading" style={{ 
-            width: '40px', 
+          <div className="loading" style={{
+            width: '40px',
             height: '40px',
             borderWidth: '4px',
             borderTopColor: '#667eea'
@@ -99,10 +99,10 @@ function StatusPage() {
         <>
           <div className="card">
             <h2 style={{ marginBottom: '1.5rem', color: '#333' }}>Component Status</h2>
-            
+
             <div style={{ display: 'grid', gap: '1rem' }}>
-              <div style={{ 
-                display: 'flex', 
+              <div style={{
+                display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 padding: '1rem',
@@ -117,8 +117,8 @@ function StatusPage() {
                     Express.js API server
                   </div>
                 </div>
-                <div style={{ 
-                  display: 'flex', 
+                <div style={{
+                  display: 'flex',
                   alignItems: 'center',
                   fontWeight: '600',
                   color: getStatusColor(status.backend)
@@ -128,8 +128,8 @@ function StatusPage() {
                 </div>
               </div>
 
-              <div style={{ 
-                display: 'flex', 
+              <div style={{
+                display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 padding: '1rem',
@@ -144,8 +144,8 @@ function StatusPage() {
                     File storage system
                   </div>
                 </div>
-                <div style={{ 
-                  display: 'flex', 
+                <div style={{
+                  display: 'flex',
                   alignItems: 'center',
                   fontWeight: '600',
                   color: getStatusColor(status.database)
@@ -155,8 +155,8 @@ function StatusPage() {
                 </div>
               </div>
 
-              <div style={{ 
-                display: 'flex', 
+              <div style={{
+                display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 padding: '1rem',
@@ -171,8 +171,8 @@ function StatusPage() {
                     Google Gemini API (gemini-2.5-flash)
                   </div>
                 </div>
-                <div style={{ 
-                  display: 'flex', 
+                <div style={{
+                  display: 'flex',
                   alignItems: 'center',
                   fontWeight: '600',
                   color: getStatusColor(status.llm)
@@ -202,8 +202,8 @@ function StatusPage() {
             </div>
           </div>
 
-          <button 
-            onClick={checkStatus} 
+          <button
+            onClick={checkStatus}
             className="btn btn-primary"
             disabled={loading}
             style={{ marginTop: '1rem' }}

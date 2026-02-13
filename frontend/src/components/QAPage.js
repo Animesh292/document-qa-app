@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 function QAPage() {
@@ -10,22 +10,22 @@ function QAPage() {
 
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
-  useEffect(() => {
-    fetchDocuments();
-  }, []);
-
-  const fetchDocuments = async () => {
+  const fetchDocuments = useCallback(async () => {
     try {
       const response = await axios.get(`${API_URL}/api/documents`);
       setDocuments(response.data.documents);
     } catch (error) {
       console.error('Error fetching documents:', error);
     }
-  };
+  }, [API_URL]);
+
+  useEffect(() => {
+    fetchDocuments();
+  }, [fetchDocuments]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!question.trim()) {
       setError('Please enter a question');
       return;
@@ -105,8 +105,8 @@ function QAPage() {
           </div>
 
           <div style={{ display: 'flex', gap: '1rem' }}>
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="btn btn-primary"
               disabled={loading || !question.trim() || documents.length === 0}
             >
@@ -120,7 +120,7 @@ function QAPage() {
             </button>
 
             {(question || answer) && (
-              <button 
+              <button
                 type="button"
                 onClick={handleClear}
                 className="btn btn-secondary"
@@ -143,7 +143,7 @@ function QAPage() {
               <div className="source-label">
                 <strong>Source Document:</strong> {answer.source}
               </div>
-              
+
               {answer.relevantText && answer.relevantText !== 'Unable to extract specific text' && (
                 <div style={{ marginTop: '1rem' }}>
                   <div className="source-label">
@@ -162,7 +162,7 @@ function QAPage() {
       {documents.length > 0 && (
         <div className="card" style={{ marginTop: '2rem', background: '#f0f7ff' }}>
           <h3 style={{ color: '#333', marginBottom: '1rem' }}>Tips for Better Results</h3>
-          <ul style={{ 
+          <ul style={{
             listStyle: 'disc',
             paddingLeft: '1.5rem',
             color: '#666',

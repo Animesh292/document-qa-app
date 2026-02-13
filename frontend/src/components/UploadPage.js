@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 function UploadPage() {
@@ -9,22 +9,22 @@ function UploadPage() {
 
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
-  useEffect(() => {
-    fetchDocuments();
-  }, []);
-
-  const fetchDocuments = async () => {
+  const fetchDocuments = useCallback(async () => {
     try {
       const response = await axios.get(`${API_URL}/api/documents`);
       setDocuments(response.data.documents);
     } catch (error) {
       console.error('Error fetching documents:', error);
     }
-  };
+  }, [API_URL]);
+
+  useEffect(() => {
+    fetchDocuments();
+  }, [fetchDocuments]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    
+
     if (!file) {
       setSelectedFile(null);
       setMessage({ type: '', text: '' });
@@ -33,9 +33,9 @@ function UploadPage() {
 
     // Validate file type
     if (!file.name.endsWith('.txt')) {
-      setMessage({ 
-        type: 'error', 
-        text: 'Only .txt files are allowed' 
+      setMessage({
+        type: 'error',
+        text: 'Only .txt files are allowed'
       });
       setSelectedFile(null);
       return;
@@ -43,9 +43,9 @@ function UploadPage() {
 
     // Validate file size (5MB)
     if (file.size > 5 * 1024 * 1024) {
-      setMessage({ 
-        type: 'error', 
-        text: 'File size must be less than 5MB' 
+      setMessage({
+        type: 'error',
+        text: 'File size must be less than 5MB'
       });
       setSelectedFile(null);
       return;
@@ -59,9 +59,9 @@ function UploadPage() {
     e.preventDefault();
 
     if (!selectedFile) {
-      setMessage({ 
-        type: 'error', 
-        text: 'Please select a file first' 
+      setMessage({
+        type: 'error',
+        text: 'Please select a file first'
       });
       return;
     }
@@ -79,21 +79,21 @@ function UploadPage() {
         }
       });
 
-      setMessage({ 
-        type: 'success', 
-        text: `File "${response.data.originalName}" uploaded successfully!` 
+      setMessage({
+        type: 'success',
+        text: `File "${response.data.originalName}" uploaded successfully!`
       });
       setSelectedFile(null);
-      
+
       // Reset file input
       document.getElementById('file-input').value = '';
-      
+
       // Refresh document list
       fetchDocuments();
     } catch (error) {
-      setMessage({ 
-        type: 'error', 
-        text: error.response?.data?.error || 'Failed to upload file' 
+      setMessage({
+        type: 'error',
+        text: error.response?.data?.error || 'Failed to upload file'
       });
     } finally {
       setUploading(false);
@@ -107,15 +107,15 @@ function UploadPage() {
 
     try {
       await axios.delete(`${API_URL}/api/documents/${filename}`);
-      setMessage({ 
-        type: 'success', 
-        text: 'Document deleted successfully' 
+      setMessage({
+        type: 'success',
+        text: 'Document deleted successfully'
       });
       fetchDocuments();
     } catch (error) {
-      setMessage({ 
-        type: 'error', 
-        text: error.response?.data?.error || 'Failed to delete document' 
+      setMessage({
+        type: 'error',
+        text: error.response?.data?.error || 'Failed to delete document'
       });
     }
   };
@@ -164,8 +164,8 @@ function UploadPage() {
             )}
           </div>
 
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="btn btn-primary"
             disabled={!selectedFile || uploading}
           >
@@ -185,7 +185,7 @@ function UploadPage() {
           <h2 style={{ marginBottom: '1rem', color: '#333' }}>
             Uploaded Documents ({documents.length})
           </h2>
-          
+
           {documents.map((doc) => (
             <div key={doc.filename} className="document-item">
               <div className="document-info">
@@ -196,7 +196,7 @@ function UploadPage() {
                   {formatFileSize(doc.size)} • Uploaded {formatDate(doc.uploadedAt)}
                 </div>
               </div>
-              <button 
+              <button
                 onClick={() => handleDelete(doc.filename)}
                 className="btn btn-danger"
                 style={{ padding: '0.5rem 1rem' }}
