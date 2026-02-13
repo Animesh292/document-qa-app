@@ -1,0 +1,28 @@
+{
+  "name": "document-qa-backend",
+  "version": "1.0.0",
+  "description": "Backend for Document Q&A System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "document",
+    "qa",
+    "openai"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.4",
+    "express": "^5.2.1",
+    "multer": "^2.0.2",
+    "openai": "^6.21.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
