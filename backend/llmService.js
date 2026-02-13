@@ -61,10 +61,8 @@ Respond in the following JSON format:
 
     const responseText = chatCompletion.choices[0]?.message?.content?.trim() || '';
 
-    // Try to parse JSON response
     let parsedResponse;
     try {
-      // Remove markdown code blocks if present
       const cleanedResponse = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '');
       parsedResponse = JSON.parse(cleanedResponse);
     } catch (parseError) {

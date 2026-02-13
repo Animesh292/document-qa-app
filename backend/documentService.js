@@ -3,9 +3,7 @@ const path = require('path');
 
 const uploadsDir = path.join(__dirname, 'uploads');
 
-/**
- * Get list of all uploaded documents
- */
+// Get list of all uploaded documents
 function getDocuments() {
   try {
     if (!fs.existsSync(uploadsDir)) {
