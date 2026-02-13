@@ -1,6 +1,6 @@
 # Document Q&A System
 
-A full-stack web application that allows users to upload text documents and ask questions about them using AI-powered analysis. The system uses OpenAI's GPT-3.5-turbo to find relevant information and provide answers with source citations.
+A full-stack web application that allows users to upload text documents and ask questions about them using AI-powered analysis. The system uses Gemini's flash-2.5 to find relevant information and provide answers with source citations.
 
 ## Features
 
@@ -21,14 +21,14 @@ A full-stack web application that allows users to upload text documents and ask 
 **Backend:**
 - Node.js with Express.js
 - Multer for file upload handling
-- OpenAI API (GPT-3.5-turbo)
+- Google's Gemini (Flash-2.5)
 - File system for document storage
 
 ## Prerequisites
 
 - Node.js (v14 or higher)
 - npm or yarn
-- OpenAI API key
+- Google's gemini flash API key
 
 ## Installation & Setup
 
@@ -49,7 +49,7 @@ npm install
 Create a `.env` file in the backend directory:
 
 ```
-OPENAI_API_KEY=your_openai_api_key_here
+GOOGLE_API_KEY=googleai_api_key_here
 PORT=5000
 ```
 
@@ -142,13 +142,13 @@ document-qa-app/
 ### Backend (Render/Railway)
 1. Push code to GitHub
 2. Connect your repository to Render or Railway
-3. Set environment variables (OPENAI_API_KEY)
+3. Set environment variables (GOOGLE_API_KEY)
 4. Deploy
 
 ### Frontend (Vercel)
 1. Push code to GitHub
 2. Import project to Vercel
-3. Set environment variable: `REACT_APP_API_URL=<your-backend-url>`
+3. Set environment variable: `REACT_APP_API_URL=<backend-url>`
 4. Deploy
 
 ## What's Implemented
@@ -199,7 +199,7 @@ document-qa-app/
 - Check CORS settings if needed
 
 **LLM connection unhealthy:**
-- Verify OpenAI API key is valid
+- Verify Google API key is valid
 - Check internet connection
 - Ensure you have API credits
 
