@@ -6,7 +6,7 @@ This document records the prompts used with AI assistants during the development
 
 ## Backend Development
 
-**Prompt 1: OpenAI Integration**
+**Prompt 1: Gemini Integration**
 ```
 Help me in implementing Google Gemini API integration for document Q&A:
 - Read all uploaded documents
@@ -211,7 +211,7 @@ during development and from deployed frontend URL in production.
 **Prompt 19: Environment Variables**
 ```
 Set up environment variables for:
-- Backend: OPENAI_API_KEY, PORT
+- Backend: GOOGLE_API_KEY, PORT
 - Frontend: REACT_APP_API_URL
 - Create .env.example files
 - Add .env to .gitignore
