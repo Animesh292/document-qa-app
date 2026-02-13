@@ -139,15 +139,15 @@ document-qa-app/
 
 ## Deployment
 
-### Backend (Render/Railway)
-1. Push code to GitHub
-2. Connect your repository to Render or Railway
+### Backend (Render)
+1. Pushed code to GitHub
+2. Connected repository to Render
 3. Set environment variables (GOOGLE_API_KEY)
 4. Deploy
 
-### Frontend (Vercel)
-1. Push code to GitHub
-2. Import project to Vercel
+### Frontend (Render)
+1. Pushed code to GitHub
+2. Imported project to Vercel
 3. Set environment variable: `REACT_APP_API_URL=<backend-url>`
 4. Deploy
 
@@ -174,9 +174,9 @@ document-qa-app/
 ##  Security Notes
 
 - Never commit `.env` files
-- Keep your OpenAI API key private
-- Add `.env` to `.gitignore`
-- Use environment variables for sensitive data
+- Keep API key private
+- Added`.env` to `.gitignore`
+- Used environment variables for sensitive data
 
 ## API Endpoints
 
