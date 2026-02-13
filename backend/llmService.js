@@ -1,12 +1,16 @@
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const Groq = require('groq-sdk');
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
-
+const groq = new Groq({
+  apiKey: process.env.GROQ_API_KEY
+});
 
 async function checkLLMConnection() {
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
-    const result = await model.generateContent('Hello');
+    const chatCompletion = await groq.chat.completions.create({
+      messages: [{ role: 'user', content: 'Hello' }],
+      model: 'llama3-8b-8192',
+      max_tokens: 10
+    });
     return true;
   } catch (error) {
     console.error('LLM connection check failed:', error.message);
@@ -48,9 +52,14 @@ Respond in the following JSON format:
   "relevantText": "exact quote from the document that supports your answer"
 }`;
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
-    const result = await model.generateContent(prompt);
-    const responseText = result.response.text().trim();
+    const chatCompletion = await groq.chat.completions.create({
+      messages: [{ role: 'user', content: prompt }],
+      model: 'llama3-8b-8192',
+      temperature: 0.3,
+      max_tokens: 1024
+    });
+
+    const responseText = chatCompletion.choices[0]?.message?.content?.trim() || '';
 
     // Try to parse JSON response
     let parsedResponse;

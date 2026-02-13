@@ -168,7 +168,7 @@ function StatusPage() {
                     LLM Connection
                   </div>
                   <div style={{ fontSize: '0.9rem', color: '#666' }}>
-                    Google Gemini API (gemini-2.0-flash-exp)
+                    Groq API (Llama 3)
                   </div>
                 </div>
                 <div style={{
