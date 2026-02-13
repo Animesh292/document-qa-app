@@ -168,7 +168,7 @@ function StatusPage() {
                     LLM Connection
                   </div>
                   <div style={{ fontSize: '0.9rem', color: '#666' }}>
-                    Google Gemini API (gemini-1.5-flash)
+                    Google Gemini API (gemini-3-flash-preview)
                   </div>
                 </div>
                 <div style={{
