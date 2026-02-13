@@ -42,7 +42,7 @@ function App() {
         </div>
 
         <footer className="footer">
-          <p>Document Q&A System © 2024</p>
+          <p>Document Q&A System © 2026</p>
         </footer>
       </div>
     </Router>
