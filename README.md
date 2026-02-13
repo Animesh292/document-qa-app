@@ -1,6 +1,6 @@
 # Document Q&A System
 
-A full-stack web application that allows users to upload text documents and ask questions about them using AI-powered analysis. The system uses Gemini's flash-2.5 to find relevant information and provide answers with source citations.
+A full-stack web application that allows users to upload text documents and ask questions about them using AI-powered analysis. The system uses Groq AI (Llama 3.3) to find relevant information and provide answers with source citations.
 
 ## Features
 
@@ -21,14 +21,14 @@ A full-stack web application that allows users to upload text documents and ask 
 **Backend:**
 - Node.js with Express.js
 - Multer for file upload handling
-- Google's Gemini (Flash-2.5)
+- Groq AI (Llama 3.3)
 - File system for document storage
 
 ## Prerequisites
 
 - Node.js (v14 or higher)
 - npm or yarn
-- Google's gemini flash API key
+- Groq API key
 
 ## Installation & Setup
 
@@ -49,7 +49,7 @@ npm install
 Create a `.env` file in the backend directory:
 
 ```
-GOOGLE_API_KEY=googleai_api_key_here
+GROQ_API_KEY=your_groq_api_key_here
 PORT=5000
 ```
 
@@ -109,7 +109,7 @@ Frontend will run on `http://localhost:3000`
 document-qa-app/
 ├── backend/
 │   ├── server.js              # Express server
-│   ├── llmService.js          # OpenAI integration
+│   ├── llmService.js          # Groq AI integration
 │   ├── documentService.js     # Document operations
 │   ├── uploads/               # Uploaded documents
 │   ├── package.json
@@ -142,7 +142,7 @@ document-qa-app/
 ### Backend (Render)
 1. Pushed code to GitHub
 2. Connected repository to Render
-3. Set environment variables (GOOGLE_API_KEY)
+3. Set environment variables (GROQ_API_KEY)
 4. Deploy
 
 ### Frontend (Render)
@@ -155,7 +155,7 @@ document-qa-app/
 
 - Document upload functionality (with validation)
 - File storage system
-- Gemini integration for Q&A
+- Groq AI integration for Q&A
 - Source citation and text extraction
 - System health monitoring
 - Responsive UI with clear navigation
@@ -192,14 +192,14 @@ document-qa-app/
 
 **Backend not starting:**
 - Check if PORT 5000 is available
-- Verify Gemini API key is set correctly in `.env`
+- Verify Groq API key is set correctly in `.env`
 
 **Frontend can't connect to backend:**
 - Ensure backend is running on port 5000
 - Check CORS settings if needed
 
 **LLM connection unhealthy:**
-- Verify Google API key is valid
+- Verify Groq API key is valid
 - Check internet connection
 - Ensure you have API credits
 

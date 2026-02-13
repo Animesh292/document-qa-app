@@ -4,8 +4,8 @@ This document outlines what AI assistance was used for and what was manually rev
 
 ## LLM Provider Used
 
-**Provider:** Gemini  
-**Model:** gemini-2.5-flash  
+**Provider:** Groq  
+**Model:** llama-3.3-70b-versatile  
 **Reason for Choice:**
 - Completely Free
 - Fast response times
@@ -56,7 +56,7 @@ This document outlines what AI assistance was used for and what was manually rev
 -  Checked security concerns (file size limits, input validation)
 
 ### 5. API Integration
--  Tested Gemini API calls with various prompts
+-  Tested Groq API calls with various prompts
 -  Validated response formats and error cases
 -  Adjusted temperature and max_tokens for optimal results
 

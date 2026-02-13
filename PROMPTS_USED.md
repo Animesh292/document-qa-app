@@ -11,7 +11,7 @@ This document records the prompts used with AI assistants during the development
 Help me in implementing Google Gemini API integration for document Q&A:
 - Read all uploaded documents
 - Create context from document contents
-- Ask flash-2.5 to answer questions based only on document content
+- Ask Llama 3.3 to answer questions based only on document content
 - Return answer with source citation and relevant text excerpt
 - Handle JSON parsing and errors
 ```
@@ -211,7 +211,7 @@ during development and from deployed frontend URL in production.
 **Prompt 19: Environment Variables**
 ```
 Set up environment variables for:
-- Backend: GOOGLE_API_KEY, PORT
+- Backend: GROQ_API_KEY, PORT
 - Frontend: REACT_APP_API_URL
 - Create .env.example files
 - Add .env to .gitignore
