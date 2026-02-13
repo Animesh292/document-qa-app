@@ -147,7 +147,7 @@ document-qa-app/
 
 ### Frontend (Render)
 1. Pushed code to GitHub
-2. Imported project to Vercel
+2. Imported project to Render
 3. Set environment variable: `REACT_APP_API_URL=<backend-url>`
 4. Deploy
 
