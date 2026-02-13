@@ -11,7 +11,7 @@ npm install
 
 Create `.env` file in `backend/` directory:
 ```
-OPENAI_API_KEY=your_new_api_key_here
+GOOGLE_API_KEY=your_new_api_key_here
 PORT=5000
 ```
 
@@ -107,7 +107,7 @@ git push -u origin main
 ls backend/.env
 
 # Check API key is set
-cat backend/.env | grep OPENAI_API_KEY
+cat backend/.env | grep GOOGLE_API_KEY
 ```
 
 **Frontend can't connect:**
@@ -118,8 +118,9 @@ curl http://localhost:5000/api/health
 
 **LLM unhealthy:**
 - Check API key is correct
-- Verify you have OpenAI credits
-- Test API key at https://platform.openai.com/
+- Verify you have API quota/limits
+- Test API key curl https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=YOUR_KEY
+- Make sure network is stable.
 
 ---
 
